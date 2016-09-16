@@ -3,19 +3,25 @@ package com.alexander.testingsystem.dao;
 import com.alexander.testingsystem.mapper.AbstractMapper;
 import com.alexander.testingsystem.model.AbstractEntity;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
+
 
 public class AbstractDAO<E extends AbstractEntity> {
-    public AbstractDAO(final BasicDataSource dataSource) {this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public AbstractDAO()
+    {
+        ApplicationContext context = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/applicationContext.xml");
+        this.jdbcTemplate = (JdbcTemplate)context.getBean("jdbcTemplate");
     }
 
     private JdbcTemplate jdbcTemplate;
 
-    public boolean insert(final String query, final E entity) {
+    public boolean insert(final String query, final Object[] entity) {
         return jdbcTemplate.update(query, entity) != 0;
     }
 

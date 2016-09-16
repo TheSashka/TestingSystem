@@ -8,15 +8,15 @@ import java.util.List;
 
 public class ThemeDAOJDBCTemplate extends AbstractDAO<Theme>
 {
-    public ThemeDAOJDBCTemplate(final BasicDataSource dataSource) {
-        super(dataSource);
+    public ThemeDAOJDBCTemplate() {
+        super();
     }
 
     public boolean insert(Theme theme)
     {
         String query = "insert into Theme (id, name) values (?, ?)";
 
-        return insert(query, theme);
+        return insert(query, new Object[]{});
     }
 
     public boolean update(Theme theme)

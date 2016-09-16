@@ -7,14 +7,14 @@ import org.apache.commons.dbcp.BasicDataSource;
 import java.util.List;
 
 public class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
-    public QuestionDAOJDBCTemplate(final BasicDataSource dataSource) {
-        super(dataSource);
+    public QuestionDAOJDBCTemplate() {
+        super();
     }
 
     public boolean insert(Question question) {
         String query = "insert into Question (id, id_theme, text, difficult) values (?, ?, ?, ?)";
-
-        return insert(query, question);
+        Object[] values = new Object[]{question.getId(), question.getIdTheme(), question.getText(), question.getDifficult()};
+        return insert(query, values);
     }
 
     public boolean update(Question question) {

@@ -1,6 +1,8 @@
 package com.alexander.testingsystem.model;
 
-public final class User extends AbstractEntity
+import java.io.Serializable;
+
+public final class User extends AbstractEntity implements Serializable
 {
     private String login;
     private String email;

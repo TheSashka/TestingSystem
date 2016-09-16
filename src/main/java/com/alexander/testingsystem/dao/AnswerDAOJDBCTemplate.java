@@ -7,13 +7,13 @@ import org.apache.commons.dbcp.BasicDataSource;
 import java.util.List;
 
 public class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
-    public AnswerDAOJDBCTemplate(final BasicDataSource dataSource) {
-        super(dataSource);
+    public AnswerDAOJDBCTemplate() {
+        super();
     }
 
     public boolean insert(Answer answer) {
         String query = "insert into Answer (id, id_question, text, is_true) values (?, ?, ?, ?)";
-        return insert(query, answer);
+        return insert(query, new Object[]{});
     }
 
     public boolean update(Answer answer) {

@@ -2,21 +2,23 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.UserMapper;
 import com.alexander.testingsystem.model.User;
-import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
+@Transactional
 public class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
 
-    public UserDAOJDBCTemplateImpl(final BasicDataSource dataSource) {
-        super(dataSource);
+    public UserDAOJDBCTemplateImpl() {
+        super();
     }
 
-    public boolean insert(User user) {
-        String query = "insert into User (id, login, email, password) values (?, ?, ?, ?)";
-
-        return insert(query, user);
+    public boolean insert(User user)
+    {
+        String query = "insert into User (login, email, password) values(?, ?, ?)";
+        Object[] values = new Object[]{user.getLogin(), user.getEmail(), user.getPassword()};
+        return insert(query, values);
     }
 
     public User getById(int id) {

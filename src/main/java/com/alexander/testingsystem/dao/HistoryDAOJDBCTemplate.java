@@ -6,8 +6,8 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public class HistoryDAOJDBCTemplate extends AbstractDAO<History>
 {
-    public HistoryDAOJDBCTemplate(final BasicDataSource dataSource) {
-        super(dataSource);
+    public HistoryDAOJDBCTemplate() {
+        super();
     }
 
     public boolean insert(History history)
