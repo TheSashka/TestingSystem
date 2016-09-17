@@ -2,13 +2,10 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.AbstractMapper;
 import com.alexander.testingsystem.model.AbstractEntity;
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -18,7 +15,6 @@ public class AbstractDAO<E extends AbstractEntity> {
         ApplicationContext context = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/applicationContext.xml");
         this.jdbcTemplate = (JdbcTemplate)context.getBean("jdbcTemplate");
     }
-
     private JdbcTemplate jdbcTemplate;
 
     public boolean insert(final String query, final Object[] entity) {
@@ -39,5 +35,10 @@ public class AbstractDAO<E extends AbstractEntity> {
 
     public List<E> getAll(final String query, final AbstractMapper<E> mapper) {
         return jdbcTemplate.query(query, mapper);
+    }
+
+    public int getByObject(final String query, final Object[] item)
+    {
+        return jdbcTemplate.queryForObject(query, item, Integer.class);
     }
 }

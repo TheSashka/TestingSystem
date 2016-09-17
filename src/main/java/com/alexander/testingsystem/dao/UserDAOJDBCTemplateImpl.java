@@ -2,7 +2,7 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.UserMapper;
 import com.alexander.testingsystem.model.User;
-import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,6 +17,8 @@ public class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
     public boolean insert(User user)
     {
         String query = "insert into User (login, email, password) values(?, ?, ?)";
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         Object[] values = new Object[]{user.getLogin(), user.getEmail(), user.getPassword()};
         return insert(query, values);
     }
@@ -43,5 +45,23 @@ public class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
     public List<User> getAll() {
         String query = "select * from User";
         return getAll(query, new UserMapper());
+    }
+
+    public int checkLogin(String login)
+    {
+        String query = "select count(*) from User where login=?";
+        return getByObject(query, new Object[]{login});
+    }
+
+    public int checkEmail(String email)
+    {
+        String query = "select count(*) from User where email=?";
+        return getByObject(query, new Object[]{email});
+    }
+
+    public int checkLoginAndPassword(String login, String password)
+    {
+        String query = "select count(*) from User where login=? and password=?";
+        return getByObject(query, new Object[]{login, password});
     }
 }

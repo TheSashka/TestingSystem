@@ -10,10 +10,10 @@
 <title><tiles:getAsString name="title" /></title>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <style type="text/css"> <%@include file="/WEB-INF/css/index.css" %> </style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
         <form class="form" action="/redirect">
@@ -24,7 +24,7 @@
             </div>
             <div class="button">
             <button type="submit" name="enter"  class="btn btn-default">Вход</button>
-            <button type="submit" name="register" class="btn btn-primary">Регистрация</button>
+            <button type="submit" name="registration" class="btn btn-primary">Регистрация</button>
             </div>
         </form>
 

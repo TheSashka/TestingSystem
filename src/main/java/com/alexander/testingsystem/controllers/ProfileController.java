@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("profile")
-public class ProfileController
+public final class ProfileController
 {
     @RequestMapping("home")
     public String home()
@@ -30,5 +30,5 @@ public class ProfileController
     {
         return "settings";
     }
-    
+
 }
