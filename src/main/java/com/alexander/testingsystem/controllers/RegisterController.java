@@ -25,11 +25,17 @@ public class RegisterController
     }
 
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST, params = "register")
     public String doRegister(@ModelAttribute("user") User user)
     {
         daojdbcTemplate.insert(user);
-        return "register";
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "register", params = "cancel")
+    public String doCancel()
+    {
+        return "redirect:/";
     }
 
 

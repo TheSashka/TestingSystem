@@ -12,8 +12,8 @@ public class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
     }
 
     public boolean insert(Question question) {
-        String query = "insert into Question (id, id_theme, text, difficult) values (?, ?, ?, ?)";
-        Object[] values = new Object[]{question.getId(), question.getIdTheme(), question.getText(), question.getDifficult()};
+        String query = "insert into Question (id_theme, text, difficult) values (?, ?, ?)";
+        Object[] values = new Object[]{question.getIdTheme(), question.getText(), question.getDifficult()};
         return insert(query, values);
     }
 

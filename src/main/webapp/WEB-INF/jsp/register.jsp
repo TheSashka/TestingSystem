@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="form">
-        <h1 class="header">Testing System</h1>
+        <h1 class="header">Register</h1>
         <form:form commandName="user" cssClass="form-horizontal">
              <div class="textfields">
                 <form:input path="login" cssClass="form-control" placeholder="Login"/>
@@ -32,9 +32,9 @@
                 <input type="password" class="form-control" placeholder="Repeat password"/>
             </div>
             <div class="button">
-			    <input type="submit" value="ОК" class="btn btn-default" />
+			    <input type="submit" name="register" value="ОК" class="btn btn-default" />
 		       
-		        <input type="submit" value="Отмена" class="btn btn-primary" />
+		        <input type="submit" name="cancel" value="Отмена" class="btn btn-primary" />
 		     </div>
         </form:form>
     </div>

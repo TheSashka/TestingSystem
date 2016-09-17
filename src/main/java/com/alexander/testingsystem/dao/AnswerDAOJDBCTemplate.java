@@ -12,8 +12,9 @@ public class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
     }
 
     public boolean insert(Answer answer) {
-        String query = "insert into Answer (id, id_question, text, is_true) values (?, ?, ?, ?)";
-        return insert(query, new Object[]{});
+        String query = "insert into Answer (id_question, text, is_true) values (?, ?, ?)";
+        Object[] values = new Object[]{ answer.getIdQuestion(), answer.getText(), answer.isTrue() };
+        return insert(query, values);
     }
 
     public boolean update(Answer answer) {

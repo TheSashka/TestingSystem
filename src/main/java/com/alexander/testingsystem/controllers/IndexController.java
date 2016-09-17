@@ -22,7 +22,7 @@ public class IndexController
     @RequestMapping(value = "/redirect", params = "enter")
     public String redirectProfile()
     {
-        return "redirect:index";
+        return "redirect:profile/home/";
     }
 
 }

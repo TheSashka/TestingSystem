@@ -12,9 +12,9 @@ public class HistoryDAOJDBCTemplate extends AbstractDAO<History>
 
     public boolean insert(History history)
     {
-        String query = "insert into History (id, id_question, id_answer, id_user) values (?, ?, ?, ?)";
-
-        return update(query, history);
+        String query = "insert into History (id_question, id_answer, id_user) values (?, ?, ?)";
+        Object[] values = new Object[]{ history.getIdQuestion(), history.getIdAnswer(), history.getIdUser() };
+        return insert(query, values);
     }
 
     public History getById(int id)

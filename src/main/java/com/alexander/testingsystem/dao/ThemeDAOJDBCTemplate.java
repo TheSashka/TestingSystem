@@ -14,9 +14,9 @@ public class ThemeDAOJDBCTemplate extends AbstractDAO<Theme>
 
     public boolean insert(Theme theme)
     {
-        String query = "insert into Theme (id, name) values (?, ?)";
-
-        return insert(query, new Object[]{});
+        String query = "insert into Theme (name) values (?)";
+        Object[] values = new Object[]{ theme.getName() };
+        return insert(query, values);
     }
 
     public boolean update(Theme theme)
