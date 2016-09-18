@@ -41,4 +41,8 @@ public class AbstractDAO<E extends AbstractEntity> {
     {
         return jdbcTemplate.queryForObject(query, item, Integer.class);
     }
+
+    public List<E> getByOtherID(final String query, final long id, final  AbstractMapper<E> mapper){
+        return jdbcTemplate.query(query, new Object[]{id}, mapper);
+    }
 }

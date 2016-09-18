@@ -2,9 +2,8 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.HistoryMapper;
 import com.alexander.testingsystem.model.History;
-import org.apache.commons.dbcp.BasicDataSource;
 
-public class HistoryDAOJDBCTemplate extends AbstractDAO<History>
+public final class HistoryDAOJDBCTemplate extends AbstractDAO<History>
 {
     public HistoryDAOJDBCTemplate() {
         super();

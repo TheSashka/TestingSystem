@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class LoginValidator implements Validator {
+public final class LoginValidator implements Validator {
 
     private final String STRING_PATTERN = "[a-zA-Z]+";
     private Pattern pattern;
@@ -34,6 +34,5 @@ public class LoginValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
                 "required.password", "Password is required.");
-
     }
 }

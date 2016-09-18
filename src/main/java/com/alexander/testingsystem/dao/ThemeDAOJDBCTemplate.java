@@ -2,11 +2,10 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.ThemeMapper;
 import com.alexander.testingsystem.model.Theme;
-import org.apache.commons.dbcp.BasicDataSource;
 
 import java.util.List;
 
-public class ThemeDAOJDBCTemplate extends AbstractDAO<Theme>
+public final class ThemeDAOJDBCTemplate extends AbstractDAO<Theme>
 {
     public ThemeDAOJDBCTemplate() {
         super();

@@ -2,11 +2,10 @@ package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.QuestionMapper;
 import com.alexander.testingsystem.model.Question;
-import org.apache.commons.dbcp.BasicDataSource;
 
 import java.util.List;
 
-public class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
+public final class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
     public QuestionDAOJDBCTemplate() {
         super();
     }
@@ -35,7 +34,7 @@ public class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
     }
 
     public List<Question> getAll() {
-        String query = "select * from User";
+        String query = "select * from Question";
         return getAll(query, new QuestionMapper());
     }
 }

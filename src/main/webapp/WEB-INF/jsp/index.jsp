@@ -23,8 +23,8 @@
                 <input type="password" class="form-control" placeholder="Password">
             </div>
             <div class="button">
-            <button type="submit" name="enter"  class="btn btn-default">Вход</button>
-            <button type="submit" name="registration" class="btn btn-primary">Регистрация</button>
+                <button type="submit" name="enter"  class="btn btn-default">Вход</button>
+                <button type="submit" name="registration" class="btn btn-primary">Регистрация</button>
             </div>
         </form>
 

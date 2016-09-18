@@ -1,6 +1,6 @@
 package com.alexander.testingsystem.model;
 
-public class Question extends AbstractEntity
+public final class Question extends AbstractEntity
 {
     private int idTheme;
     private String text;

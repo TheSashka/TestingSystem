@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
+public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
 
     public UserDAOJDBCTemplateImpl() {
         super();
