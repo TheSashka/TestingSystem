@@ -5,24 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public final class IndexController
-{
-    @RequestMapping("/index")
-    public String index()
-    {
+public final class IndexController {
+    @RequestMapping("index")
+    public String index() {
         return "index";
     }
 
-    @RequestMapping(value = "/redirect", params = "registration")
-    public String redirectRegister() {
-
-        return "redirect:registration";
-    }
-
-    @RequestMapping(value = "/redirect", params = "enter")
-    public String redirectProfile()
+    @RequestMapping("home")
+    public String home()
     {
-        return "redirect:profile/home/";
+        return "index";
     }
-
 }

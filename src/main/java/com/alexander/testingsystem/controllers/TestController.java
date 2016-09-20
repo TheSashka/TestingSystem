@@ -12,42 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("profile")
-public final class ProfileController
+public class TestController
 {
     private QuestionDAOJDBCTemplate questionDAOJDBCTemplate = new QuestionDAOJDBCTemplate();
     private AnswerDAOJDBCTemplate answerDAOJDBCTemplate = new AnswerDAOJDBCTemplate();
-    @RequestMapping("home")
-    public String home()
-    {
-        return "home";
-    }
 
-    @RequestMapping("history")
-    public String history()
-    {
-        return "history";
-    }
-
-    @RequestMapping("test")
+    @RequestMapping("/test")
     public String test(Model model) {
         model.addAttribute("tests", getMultipleChoice());
         return "test";
     }
 
-    @RequestMapping("settings")
-    public String settings()
-    {
-        return "settings";
-    }
-
     private List<MultipleChoice> getMultipleChoice() {
         List<MultipleChoice> multipleChoices = new ArrayList<MultipleChoice>();
         ArrayList<Question> questionList = new ArrayList<Question>(questionDAOJDBCTemplate.getAll());
-        for (int i = 0; i < questionList.size(); i++)
-        {
+        for (int i = 0; i < questionList.size(); i++) {
             multipleChoices.add(new MultipleChoice(questionList.get(i).getText(),
-                     answerDAOJDBCTemplate.getByQuestionId(questionList.get(i).getId())));
+                    answerDAOJDBCTemplate.getByQuestionId(questionList.get(i).getId())));
         }
         return multipleChoices;
     }

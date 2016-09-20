@@ -44,7 +44,7 @@
                 </div>  
             </div>
             
-            <div class="button">
+            <div align="right">
                 <div class="form-group">
 			    <input type="submit" name="register" value="Регистрация" class="btn btn-default" />   
                 </div>
