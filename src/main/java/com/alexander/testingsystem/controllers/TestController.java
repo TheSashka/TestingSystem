@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class TestController
+public final class TestController
 {
     private QuestionDAOJDBCTemplate questionDAOJDBCTemplate = new QuestionDAOJDBCTemplate();
     private AnswerDAOJDBCTemplate answerDAOJDBCTemplate = new AnswerDAOJDBCTemplate();

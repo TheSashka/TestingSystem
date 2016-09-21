@@ -35,9 +35,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="${current == '/test' ? 'active' : ''}"><a href='<spring:url value="/test" />'>Тест</a></li>
-          <li class="${current == '/history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>
-          <li class="${current == '/settings' ? 'active' : ''}"><a href='<spring:url value="/settings" />'>Настройки</a></li>
+          <security:authorize access="isAuthenticated()">
+            <li class="${current == '/test' ? 'active' : ''}"><a href='<spring:url value="/test" />'>Тест</a></li>
+            <li class="${current == '/history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>
+            <li class="${current == '/profile' ? 'active' : ''}"><a href='<spring:url value="/profile" />'>Профиль</a></li>
+          </security:authorize>
         </ul>
           <ul class="nav navbar-nav navbar-right">
             <security:authorize access="!isAuthenticated()">

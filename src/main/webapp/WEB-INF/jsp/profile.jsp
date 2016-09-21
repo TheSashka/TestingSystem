@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    This is settings page
+    This is settings page ${user.login}
+
+    

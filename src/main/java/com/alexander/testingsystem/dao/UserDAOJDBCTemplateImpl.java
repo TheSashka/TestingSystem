@@ -14,8 +14,7 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
         super();
     }
 
-    public boolean insert(User user)
-    {
+    public boolean insert(User user) {
         String query = "insert into User (login, email, password) values(?, ?, ?)";
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
@@ -47,21 +46,23 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
         return getAll(query, new UserMapper());
     }
 
-    public int checkLogin(String login)
-    {
+    public int checkLogin(String login) {
         String query = "select count(*) from User where login=?";
         return getByObject(query, new Object[]{login});
     }
 
-    public int checkEmail(String email)
-    {
+    public int checkEmail(String email) {
         String query = "select count(*) from User where email=?";
         return getByObject(query, new Object[]{email});
     }
 
-    public int checkLoginAndPassword(String login, String password)
-    {
+    public int checkLoginAndPassword(String login, String password) {
         String query = "select count(*) from User where login=? and password=?";
         return getByObject(query, new Object[]{login, password});
+    }
+
+    public User getByLogin(String name) {
+        String query = "select * from User where login=?";
+        return getbByString(query, name, new UserMapper());
     }
 }

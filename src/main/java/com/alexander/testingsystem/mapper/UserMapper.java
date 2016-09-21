@@ -5,7 +5,7 @@ import com.alexander.testingsystem.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMapper extends AbstractMapper<User> {
+public final class UserMapper extends AbstractMapper<User> {
 
     public User mapRow(ResultSet resultSet, int i) throws SQLException {
         User user = new User();

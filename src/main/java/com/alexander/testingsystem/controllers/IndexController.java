@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public final class IndexController {
+
     @RequestMapping("index")
     public String index() {
         return "index";
     }
 
     @RequestMapping("home")
-    public String home()
-    {
+    public String home() {
         return "index";
     }
 }

@@ -5,7 +5,7 @@ import com.alexander.testingsystem.model.Answer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AnswerMapper extends AbstractMapper<Answer> {
+public final class AnswerMapper extends AbstractMapper<Answer> {
 
     public Answer mapRow(ResultSet rs, int i) throws SQLException {
         Answer answer     = new Answer();

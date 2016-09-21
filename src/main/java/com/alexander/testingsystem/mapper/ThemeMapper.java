@@ -5,7 +5,7 @@ import com.alexander.testingsystem.model.Theme;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ThemeMapper extends AbstractMapper<Theme> {
+public final class ThemeMapper extends AbstractMapper<Theme> {
 
     public Theme mapRow(ResultSet resultSet, int i) throws SQLException {
 

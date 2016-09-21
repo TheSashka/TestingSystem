@@ -5,7 +5,7 @@ import com.alexander.testingsystem.model.History;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HistoryMapper extends AbstractMapper<History> {
+public final class HistoryMapper extends AbstractMapper<History> {
 
     public History mapRow(ResultSet rs, int i) throws SQLException {
         History history    = new History();

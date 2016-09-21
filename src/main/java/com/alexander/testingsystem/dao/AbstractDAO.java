@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 
-public class AbstractDAO<E extends AbstractEntity> {
+public abstract class AbstractDAO<E extends AbstractEntity> {
     public AbstractDAO()
     {
         ApplicationContext context = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/applicationContext.xml");
@@ -37,12 +37,15 @@ public class AbstractDAO<E extends AbstractEntity> {
         return jdbcTemplate.query(query, mapper);
     }
 
-    public int getByObject(final String query, final Object[] item)
-    {
+    public int getByObject(final String query, final Object[] item) {
         return jdbcTemplate.queryForObject(query, item, Integer.class);
     }
 
     public List<E> getByOtherID(final String query, final long id, final  AbstractMapper<E> mapper){
         return jdbcTemplate.query(query, new Object[]{id}, mapper);
+    }
+
+    public E getbByString(final String query, final String login, final AbstractMapper<E> mapper) {
+        return jdbcTemplate.queryForObject(query, new Object[]{login}, mapper);
     }
 }
