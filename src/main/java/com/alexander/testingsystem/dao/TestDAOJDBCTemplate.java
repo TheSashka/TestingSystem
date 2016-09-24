@@ -31,4 +31,9 @@ public final class TestDAOJDBCTemplate extends AbstractDAO<Test> {
         String query = "select * from Test where id_user = ?";
         return getByOtherID(query, user_id, new TestMapper());
     }
+
+    public List<Test> getAll(){
+        String query = "select * from Test";
+        return getAll(query, new TestMapper());
+    }
 }

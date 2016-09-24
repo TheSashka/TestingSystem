@@ -29,10 +29,15 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
            <li class="${current == 'home' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
-          <security:authorize access="isAuthenticated()">
+          <security:authorize access="isAuthenticated() and hasRole('USER')">
             <li class="${current == 'test' ? 'active' : ''}"><a href='<spring:url value="/startTesting" />'>Тест</a></li>
             <li class="${current == 'history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>
             <li class="${current == 'profile' ? 'active' : ''}"><a href='<spring:url value="/profile" />'>Профиль</a></li>
+          </security:authorize>
+          <security:authorize access="isAuthenticated() and hasRole('ADMIN')">
+            <li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users" />">Аккаунты</a></li>
+            <li class="${current == 'histories' ? 'active' : ''}"><a href='<spring:url value="/histories" />'>История</a></li>
+            <li class="${current == 'question' ? 'active' : ''}"><a href='<spring:url value="/question" />'>Добавить вопрос</a></li>
           </security:authorize>
         </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -53,6 +58,5 @@
 <center>
   <tiles:insertAttribute name="footer" />
 </center>
-
 </body>
 </html>

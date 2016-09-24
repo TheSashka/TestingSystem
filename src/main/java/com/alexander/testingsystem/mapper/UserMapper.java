@@ -13,6 +13,7 @@ public final class UserMapper extends AbstractMapper<User> {
         user.setLogin(resultSet.getString("login"));
         user.setEmail(resultSet.getString("email"));
         user.setPassword(resultSet.getString("password"));
+        user.setRole(resultSet.getString("role"));
         return user;
     }
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<div class="form">
-    <a class="btn btn-default" href="/test/${id}" role="button">Начать тестирование</a>
+<style type="text/css"> <%@include file="/WEB-INF/css/startTesting.css" %> </style>
+<div class="button">
+    <a class="btn btn-primary btn-lg" href="/test/${id}" role="button">Начать тестирование</a>
 </div>
-
