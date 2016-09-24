@@ -1,8 +1,10 @@
 package com.alexander.testingsystem.dao;
 
 import com.alexander.testingsystem.mapper.AnswerMapper;
+import com.alexander.testingsystem.mapper.QuestionMapper;
 import com.alexander.testingsystem.model.Answer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
@@ -18,16 +20,17 @@ public final class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
 
     public boolean update(Answer answer) {
         String query = "update Answer set id_question=?, text=?, is_true=? where id=?";
-        return update(query, answer);
+        Object[] values = new Object[]{ answer.getIdQuestion(), answer.getText(), answer.isTrue(), answer.getId() };
+        return update(query, values);
     }
 
-    public boolean deleteById(int id) {
+    public boolean deleteById(long id) {
         String query = "delete from Answer where id=?";
 
         return delete(query, id);
     }
 
-    public Answer getById(int id) {
+    public Answer getById(long id) {
         String query = "select * from Answer where id = ?";
 
         return getByID(query, id, new AnswerMapper());
@@ -39,9 +42,23 @@ public final class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
         return getAll(query, new AnswerMapper());
     }
 
-    public List<Answer> getByQuestionId(long id)
+    public List<String> getByQuestionId(long id)
     {
         String query = "select * from Answer where id_question =?";
-        return getByOtherID(query, id, new AnswerMapper());
+        List<Answer> answers = getByOtherID(query, id, new AnswerMapper());
+        List<String> textAnswers = new ArrayList<String>();
+        for(Answer answer: answers)
+        {
+            textAnswers.add(answer.getText());
+        }
+        return textAnswers;
     }
+
+    public List<Answer> getAnswersByQuestionId(long id)
+    {
+        String query = "select * from Answer where id_question =?";
+        List<Answer> answers = getByOtherID(query, id, new AnswerMapper());
+        return answers;
+    }
+
 }

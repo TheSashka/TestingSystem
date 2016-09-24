@@ -5,6 +5,15 @@ import java.util.List;
 public final class MultipleChoice {
     private String question;
     private List<Answer> answers;
+    private long idQuestion;
+
+    public long getIdQuestion() {
+        return idQuestion;
+    }
+
+    public void setIdQuestion(long idQuestion) {
+        this.idQuestion = idQuestion;
+    }
 
     public String getQuestion() {
         return question;
@@ -14,7 +23,6 @@ public final class MultipleChoice {
         this.question = question;
     }
 
-
     public List<Answer> getAnswers() {
         return answers;
     }
@@ -23,13 +31,9 @@ public final class MultipleChoice {
         this.answers = answers;
     }
 
-    public MultipleChoice(String question, List<Answer> answers) {
+    public MultipleChoice(String question, List<Answer> answers, long idQuestion) {
         this.question = question;
         this.answers = answers;
-    }
-
-    public MultipleChoice()
-    {
-
+        this.idQuestion = idQuestion;
     }
 }

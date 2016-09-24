@@ -12,7 +12,7 @@ public final class HistoryMapper extends AbstractMapper<History> {
         history.setId(rs.getLong("id"));
         history.setIdQuestion(rs.getInt("id_question"));
         history.setIdAnswer(rs.getInt("id_answer"));
-        history.setIdUser(rs.getInt("id_user"));
+        history.setIdTest(rs.getInt("id_test"));
         return history;
     }
 }

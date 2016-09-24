@@ -21,18 +21,18 @@ public final class ThemeDAOJDBCTemplate extends AbstractDAO<Theme>
     public boolean update(Theme theme)
     {
         String query = "update Theme set name=? where id=?";
-
-        return update(query, theme);
+        Object[] values = new Object[]{ theme.getName(), theme.getId()};
+        return update(query, values);
     }
 
-    public boolean deleteById(int id)
+    public boolean deleteById(long id)
     {
         String query = "delete from Theme where id=?";
 
         return delete(query, id);
     }
 
-    public Theme getById(int id)
+    public Theme getById(long id)
     {
         String query = "select * from Theme where id = ?";
 

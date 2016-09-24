@@ -10,7 +10,6 @@ public final class QuestionMapper extends AbstractMapper<Question> {
     public Question mapRow(ResultSet rs, int i) throws SQLException {
         Question question  = new Question();
         question.setId(rs.getLong("id"));
-        question.setIdTheme(rs.getInt("id_theme"));
         question.setText(rs.getString("text"));
         question.setDifficult(rs.getInt("difficult"));
         return question;

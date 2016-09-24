@@ -2,31 +2,31 @@ package com.alexander.testingsystem.model;
 
 public final class History extends AbstractEntity
 {
-    private int idQuestion;
-    private int idAnswer;
-    private int idUser;
+    private long idQuestion;
+    private long idAnswer;
+    private long idTest;
 
-    public int getIdQuestion() {
+    public long getIdQuestion() {
         return idQuestion;
     }
 
-    public void setIdQuestion(int idQuestion) {
+    public void setIdQuestion(long idQuestion) {
         this.idQuestion = idQuestion;
     }
 
-    public int getIdAnswer() {
+    public long getIdAnswer() {
         return idAnswer;
     }
 
-    public void setIdAnswer(int idAnswer) {
+    public void setIdAnswer(long idAnswer) {
         this.idAnswer = idAnswer;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public long getIdTest() {
+        return idTest;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdTest(long idTest) {
+        this.idTest = idTest;
     }
 }

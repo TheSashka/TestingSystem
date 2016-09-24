@@ -1,9 +1,9 @@
 package com.alexander.testingsystem.model;
 
 public abstract class AbstractEntity {
-    private Long id;
+    private long id;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

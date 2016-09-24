@@ -4,8 +4,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,26 +21,18 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+<tilesx:useAttribute name="current"/>
 <div class="form">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href='<spring:url value="/home" />'>Home</a>
-      </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+           <li class="${current == 'home' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
           <security:authorize access="isAuthenticated()">
-            <li class="${current == '/test' ? 'active' : ''}"><a href='<spring:url value="/test" />'>Тест</a></li>
-            <li class="${current == '/history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>
-            <li class="${current == '/profile' ? 'active' : ''}"><a href='<spring:url value="/profile" />'>Профиль</a></li>
+            <li class="${current == 'test' ? 'active' : ''}"><a href='<spring:url value="/startTesting" />'>Тест</a></li>
+            <li class="${current == 'history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>
+            <li class="${current == 'profile' ? 'active' : ''}"><a href='<spring:url value="/profile" />'>Профиль</a></li>
           </security:authorize>
         </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -51,8 +45,8 @@
               </security:authorize>
             
           </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
   <tiles:insertAttribute name="body" />
 </div>

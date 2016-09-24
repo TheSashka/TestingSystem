@@ -2,15 +2,16 @@ package com.alexander.testingsystem.model;
 
 public final class Answer extends AbstractEntity
 {
-    private int idQuestion;
+    private long idQuestion;
     private String text;
-    private boolean isTrue;
+    private boolean is_true;
 
-    public int getIdQuestion() {
+    public long getIdQuestion() {
         return idQuestion;
     }
 
-    public void setIdQuestion(int idQuestion) {
+
+    public void setIdQuestion(long idQuestion) {
         this.idQuestion = idQuestion;
     }
 
@@ -23,10 +24,10 @@ public final class Answer extends AbstractEntity
     }
 
     public boolean isTrue() {
-        return isTrue;
+        return is_true;
     }
 
     public void setTrue(boolean aTrue) {
-        isTrue = aTrue;
+        is_true = aTrue;
     }
 }

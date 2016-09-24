@@ -21,7 +21,7 @@ public abstract class AbstractDAO<E extends AbstractEntity> {
         return jdbcTemplate.update(query, entity) != 0;
     }
 
-    public boolean update(final String query, final E entity) {
+    public boolean update(final String query, final Object[] entity) {
         return jdbcTemplate.update(query, entity) != 0;
     }
 
@@ -47,5 +47,10 @@ public abstract class AbstractDAO<E extends AbstractEntity> {
 
     public E getbByString(final String query, final String login, final AbstractMapper<E> mapper) {
         return jdbcTemplate.queryForObject(query, new Object[]{login}, mapper);
+    }
+
+    public E getByObject(final  String query, final Object[] objects,  final  AbstractMapper<E> mapper)
+    {
+        return jdbcTemplate.queryForObject(query, objects, mapper);
     }
 }

@@ -22,7 +22,7 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
         return insert(query, values);
     }
 
-    public User getById(int id) {
+    public User getById(long id) {
         String query = "select * from User where id = ?";
 
         //using RowMapper anonymous class, we can create a separate RowMapper for reuse
@@ -31,11 +31,11 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
 
     public boolean update(User user) {
         String query = "update User set login=?, email=?, password=? where id=?";
-
-        return update(query, user);
+        Object[] values = new Object[]{user.getLogin(), user.getEmail(), user.getPassword(), user.getId()};
+        return update(query, values);
     }
 
-    public boolean deleteById(int id) {
+    public boolean deleteById(long id) {
         String query = "delete from User where id=?";
 
         return delete(query, id);
