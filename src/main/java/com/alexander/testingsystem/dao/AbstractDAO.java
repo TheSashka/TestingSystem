@@ -45,10 +45,6 @@ public abstract class AbstractDAO<E extends AbstractEntity> {
         return jdbcTemplate.query(query, new Object[]{id}, mapper);
     }
 
-    public E getbByString(final String query, final String login, final AbstractMapper<E> mapper) {
-        return jdbcTemplate.queryForObject(query, new Object[]{login}, mapper);
-    }
-
     public E getByObject(final  String query, final Object[] objects,  final  AbstractMapper<E> mapper)
     {
         return jdbcTemplate.queryForObject(query, objects, mapper);

@@ -7,6 +7,15 @@ public final class Test extends AbstractEntity
 {
     private long idUser;
     private Date date;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public long getIdUser() {
         return idUser;

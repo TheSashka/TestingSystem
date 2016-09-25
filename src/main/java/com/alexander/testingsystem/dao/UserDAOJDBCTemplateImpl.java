@@ -63,6 +63,6 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
 
     public User getByLogin(String name) {
         String query = "select * from User where login=?";
-        return getbByString(query, name, new UserMapper());
+        return getByObject(query, new Object[]{name}, new UserMapper());
     }
 }

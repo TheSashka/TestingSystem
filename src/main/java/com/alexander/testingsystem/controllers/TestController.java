@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,57 +23,54 @@ public final class TestController
     private UserDAOJDBCTemplateImpl userDAOJDBCTemplate = new UserDAOJDBCTemplateImpl();
     private TestDAOJDBCTemplate testDAOJDBCTemplate = new TestDAOJDBCTemplate();
     private HistoryDAOJDBCTemplate historyDAOJDBCTemplate = new HistoryDAOJDBCTemplate();
-    private int count = 0;
-    private long idTest;
 
 
     @RequestMapping("/startTesting")
-    public String startTesting(Model model, Principal principal) {
-        model.addAttribute("id", userDAOJDBCTemplate.getByLogin(principal.getName()).getId());
+    public String startTesting() {
         return "startTesting";
     }
 
-    @RequestMapping("test/{id}")
-    public String testing(@PathVariable long id, Model model){
 
-        Test variableTest = new Test();
-        variableTest.setIdUser(id);
-        variableTest.setDate(new Date());
-        testDAOJDBCTemplate.insert(variableTest);
-        variableTest.setId(testDAOJDBCTemplate.getByObject(new Object[]{id, new Date()}).getId());
-        idTest = variableTest.getId();
-        return "redirect:/test";
-    }
-
-    @RequestMapping(value="/test", method = RequestMethod.GET)
-    public String test(@ModelAttribute("resultForm") Answer answer, Model model) {
-        model.addAttribute("questionText", getMultipleChoice().get(count).getQuestion());
-        model.addAttribute("answersText", new ArrayList<Answer>(getMultipleChoice().get(count).getAnswers()));
-        model.addAttribute("resultForm", answer);
+    @RequestMapping(value="/test")
+    public String test(Model model) {
+        Answers answers = new Answers();
+        List<Answer> answerArrayList = new ArrayList<Answer>();
+        for(int i = 0; i < getMultipleChoice().size(); i++){
+            answerArrayList.add(new Answer());
+        }
+        answers.setAnswers(answerArrayList);
+        model.addAttribute("resultForm", answers);
+        model.addAttribute("multipleChoices", getMultipleChoice());
         return "test";
     }
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String result(@Valid @ModelAttribute("resultForm") Answer answer, BindingResult result, Model model) {
+    public String result(@Valid @ModelAttribute("resultForm") Answers answers, BindingResult result,
+                         Principal principal, Model model) {
         if (result.hasErrors()) {
             System.out.println("validation error occured in survey form");
             return "test";
         }
-        answer.setIdQuestion(answerDAOJDBCTemplate.getById(answer.getId()).getIdQuestion());
-        History history = new History();
-        history.setIdAnswer(answer.getId());
-        history.setIdQuestion(answer.getIdQuestion());
-        history.setIdTest(idTest);
-        historyDAOJDBCTemplate.insert(history);
-        count++;
-        if(count < getMultipleChoice().size()) {
-            return "redirect:/test";
+        User user = userDAOJDBCTemplate.getByLogin(principal.getName());
+        Test test = new Test();
+        test.setDate(new Date());
+        test.setIdUser(user.getId());
+        testDAOJDBCTemplate.insert(test);
+        test.setId(testDAOJDBCTemplate.getByObject(new Object[]{user.getId(), "new"}).getId());
+        for (Answer answer: answers.getAnswers()){
+            if(answer.getId() != 0){
+                answer.setIdQuestion(answerDAOJDBCTemplate.getById(answer.getId()).getIdQuestion());
+                History history = new History();
+                history.setIdAnswer(answer.getId());
+                history.setIdQuestion(answer.getIdQuestion());
+                history.setIdTest(test.getId());
+                historyDAOJDBCTemplate.insert(history);
+            }
         }
-        else {
-            count=0;
-            model.addAttribute("id", idTest);
-            return "redirect:/results/{id}";
-        }
+        test.setState("finished");
+        testDAOJDBCTemplate.update(test);
+        model.addAttribute("id", test.getId());
+        return "redirect:/results/{id}";
     }
 
     private List<MultipleChoice> getMultipleChoice() {

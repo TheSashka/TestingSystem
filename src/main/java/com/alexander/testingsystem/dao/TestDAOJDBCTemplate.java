@@ -23,7 +23,7 @@ public final class TestDAOJDBCTemplate extends AbstractDAO<Test> {
     }
 
     public Test getByObject(Object[] objects){
-        String query = "select * from Test where id_user =? and date=?";
+        String query = "select * from Test where id_user =? and state=?";
         return getByObject(query, objects, new TestMapper());
     }
 
@@ -35,5 +35,10 @@ public final class TestDAOJDBCTemplate extends AbstractDAO<Test> {
     public List<Test> getAll(){
         String query = "select * from Test";
         return getAll(query, new TestMapper());
+    }
+
+    public boolean update(Test test){
+        String query = "update Test set state=? where id=?";
+        return update(query, new Object[]{test.getState(), test.getId()});
     }
 }

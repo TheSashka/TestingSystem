@@ -23,7 +23,7 @@ public final class ResultController
         AnswerDAOJDBCTemplate answerDAOJDBCTemplate = new AnswerDAOJDBCTemplate();
         ArrayList<QuestionAndAnswer> questionAndAnswers = new ArrayList<QuestionAndAnswer>();
 
-        for(History history: historyDAOJDBCTemplate.getAllbyId(id)) {
+        for(History history: historyDAOJDBCTemplate.getAllById(id)) {
             QuestionAndAnswer questionAndAnswer = new QuestionAndAnswer();
             questionAndAnswer.setQuestion(questionDAOJDBCTemplate.getById(history.getIdQuestion()).getText());
             questionAndAnswer.setAnswer(answerDAOJDBCTemplate.getById(history.getIdAnswer()).getText());

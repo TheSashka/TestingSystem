@@ -4,6 +4,7 @@
 
 <div class="list-group">
     <c:forEach items="${histories}" var="history">
-        <a href="/results/${history.id}" class="list-group-item">Test №${history.id}</a>
+        <a href="/results/${history.id}" class="list-group-item">Test №${history.id} &ensp;&ensp;&ensp; 
+        &ensp; Date: ${history.date}</a>
     </c:forEach>
 </div>

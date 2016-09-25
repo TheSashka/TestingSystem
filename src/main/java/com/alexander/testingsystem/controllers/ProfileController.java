@@ -3,18 +3,14 @@ package com.alexander.testingsystem.controllers;
 import com.alexander.testingsystem.dao.UserDAOJDBCTemplateImpl;
 import com.alexander.testingsystem.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
 import java.security.Principal;
-import java.util.logging.Logger;
 
 @Controller
 public final class ProfileController {
@@ -23,8 +19,7 @@ public final class ProfileController {
 
     @RequestMapping("/profile")
     public String profile(Model model, Principal principal) {
-        String login = principal.getName();
-        model.addAttribute("user", userDAOJDBCTemplate.getByLogin(login));
+        model.addAttribute("user", userDAOJDBCTemplate.getByLogin(principal.getName()));
         return "profile";
     }
 
@@ -43,8 +38,6 @@ public final class ProfileController {
         }
         userDAOJDBCTemplate.update(user);
         model.addAttribute("user", user);
-        System.out.println(user.getLogin() + " " + user.getEmail() + " "  + user.getPassword() + " " +
-                user.getId());
         return "redirect:/login";
     }
 }

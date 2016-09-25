@@ -41,7 +41,6 @@ public final class QuestionDAOJDBCTemplate extends AbstractDAO<Question> {
 
     public Question getByText(String text) {
         String query = "select * from Question where text = ?";
-        return getbByString(query, text, new QuestionMapper());
-
+        return getByObject(query, new Object[]{text}, new QuestionMapper());
     }
 }

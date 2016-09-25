@@ -6,21 +6,26 @@
 <style type="text/css"> <%@include file="/WEB-INF/css/test.css" %> </style>
 
 <form:form method="POST" action="/result" commandName="resultForm">
+ <c:forEach items="${multipleChoices}" var="multipleChoice" varStatus="status">
     <ul class="list-group">
 		<li class="list-group-item">
-            ${questionText}
+            ${multipleChoice.question}
             <div>
-                <c:forEach items="${answersText}" var="answero">
+                <c:forEach items="${multipleChoice.answers}" var="answer">
                     <div class="radio">
                         <label>
-                            <form:radiobutton path="id"  value="${answero.id}"/>${answero.text}
+                            <form:radiobutton path="answers[${status.index}].id"  
+                            value="${answer.id}"/>${answer.text}
                         </label>
                     </div>
                 </c:forEach>
-            </div>
+            </div>  
         </li>
 	</ul>
+</c:forEach>
 <div align="right">
     <button type="submit" class="btn btn-default">Проверка теста</button>
 </div>
 </form:form>
+
+

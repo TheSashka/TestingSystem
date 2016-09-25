@@ -11,6 +11,7 @@ public final class TestMapper extends AbstractMapper<com.alexander.testingsystem
         test.setId(resultSet.getLong("id"));
         test.setIdUser(resultSet.getInt("id_user"));
         test.setDate(resultSet.getDate("date"));
+        test.setState(resultSet.getString("state"));
         return test;
     }
 }

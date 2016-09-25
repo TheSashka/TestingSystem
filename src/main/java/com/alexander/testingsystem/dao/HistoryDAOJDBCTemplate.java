@@ -24,13 +24,9 @@ public final class HistoryDAOJDBCTemplate extends AbstractDAO<History>
 
         return getByID(query, id, new HistoryMapper());
     }
+    
 
-    public History getByIdTest(long idTest, long idQuestion){
-        String query = "select * from History where id_test =? and id_question=?";
-        return  getByObject(query, new Object[]{idTest, idQuestion}, new HistoryMapper());
-    }
-
-    public List<History> getAllbyId(long idTest){
+    public List<History> getAllById(long idTest){
         String query = "select * from History where id_test=?";
         return getByOtherID(query, idTest, new HistoryMapper());
     }

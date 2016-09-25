@@ -42,17 +42,6 @@ public final class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
         return getAll(query, new AnswerMapper());
     }
 
-    public List<String> getByQuestionId(long id)
-    {
-        String query = "select * from Answer where id_question =?";
-        List<Answer> answers = getByOtherID(query, id, new AnswerMapper());
-        List<String> textAnswers = new ArrayList<String>();
-        for(Answer answer: answers)
-        {
-            textAnswers.add(answer.getText());
-        }
-        return textAnswers;
-    }
 
     public List<Answer> getAnswersByQuestionId(long id)
     {
