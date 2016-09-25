@@ -3,7 +3,7 @@ package com.alexander.testingsystem.model;
 
 import java.util.Date;
 
-public class Test extends AbstractEntity
+public final class Test extends AbstractEntity
 {
     private long idUser;
     private Date date;

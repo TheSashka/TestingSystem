@@ -36,7 +36,7 @@
           </security:authorize>
           <security:authorize access="isAuthenticated() and hasRole('ADMIN')">
             <li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users" />">Аккаунты</a></li>
-            <li class="${current == 'histories' ? 'active' : ''}"><a href='<spring:url value="/histories" />'>История</a></li>
+            <li class="${current == 'history' ? 'active' : ''}"><a href='<spring:url value="/histories" />'>История</a></li>
             <li class="${current == 'question' ? 'active' : ''}"><a href='<spring:url value="/question" />'>Добавить вопрос</a></li>
           </security:authorize>
         </ul>

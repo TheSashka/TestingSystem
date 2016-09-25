@@ -6,6 +6,15 @@ public final class MultipleChoice {
     private String question;
     private List<Answer> answers;
     private long idQuestion;
+    private int difficult;
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
+    }
 
     public long getIdQuestion() {
         return idQuestion;
@@ -35,5 +44,8 @@ public final class MultipleChoice {
         this.question = question;
         this.answers = answers;
         this.idQuestion = idQuestion;
+    }
+
+    public MultipleChoice() {
     }
 }

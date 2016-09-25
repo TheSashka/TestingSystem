@@ -11,15 +11,19 @@ import java.security.Principal;
 @Controller
 public final class HistoryController
 {
-    private int count = 1;
-
-    @RequestMapping("/history")
+    @RequestMapping("history")
     public String history(Model model, Principal principal) {
         UserDAOJDBCTemplateImpl userDAOJDBCTemplate = new UserDAOJDBCTemplateImpl();
         TestDAOJDBCTemplate testDAOJDBCTemplate = new TestDAOJDBCTemplate();
         model.addAttribute("histories", testDAOJDBCTemplate.getByUserId(
                 userDAOJDBCTemplate.getByLogin(principal.getName()).getId()));
-        model.addAttribute("count", count);
+        return "history";
+    }
+
+    @RequestMapping("histories")
+    public String histories(Model model) {
+        TestDAOJDBCTemplate testDAOJDBCTemplate = new TestDAOJDBCTemplate();
+        model.addAttribute("histories", testDAOJDBCTemplate.getAll());
         return "history";
     }
 }

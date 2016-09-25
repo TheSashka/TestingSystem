@@ -12,7 +12,7 @@ public final class AnswerMapper extends AbstractMapper<Answer> {
         answer.setId(rs.getLong("id"));
         answer.setIdQuestion(rs.getInt("id_question"));
         answer.setText(rs.getString("text"));
-        answer.setTrue(rs.getBoolean("is_true"));
+        answer.setIsTrue(rs.getBoolean("is_true"));
         return answer;
     }
 }

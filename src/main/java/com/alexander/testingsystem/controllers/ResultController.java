@@ -27,7 +27,7 @@ public final class ResultController
             QuestionAndAnswer questionAndAnswer = new QuestionAndAnswer();
             questionAndAnswer.setQuestion(questionDAOJDBCTemplate.getById(history.getIdQuestion()).getText());
             questionAndAnswer.setAnswer(answerDAOJDBCTemplate.getById(history.getIdAnswer()).getText());
-            questionAndAnswer.setIsTrue(answerDAOJDBCTemplate.getById(history.getIdAnswer()).isTrue());
+            questionAndAnswer.setIsTrue(answerDAOJDBCTemplate.getById(history.getIdAnswer()).getIsTrue());
             questionAndAnswers.add(questionAndAnswer);
         }
         model.addAttribute("results", questionAndAnswers);

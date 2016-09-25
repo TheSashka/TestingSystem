@@ -1,7 +1,7 @@
 package com.alexander.testingsystem.model;
 
 
-public class QuestionAndAnswer
+public final class QuestionAndAnswer
 {
     String question;
     String answer;

@@ -23,11 +23,11 @@ public final class Answer extends AbstractEntity
         this.text = text;
     }
 
-    public boolean isTrue() {
+    public boolean getIsTrue() {
         return is_true;
     }
 
-    public void setTrue(boolean aTrue) {
+    public void setIsTrue(boolean aTrue) {
         is_true = aTrue;
     }
 }

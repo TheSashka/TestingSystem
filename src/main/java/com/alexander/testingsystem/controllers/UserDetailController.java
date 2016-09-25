@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class UserDetailController {
+public final class UserDetailController {
 
     @RequestMapping("user-detail/{id}")
     public String userDetail(@PathVariable long id, Model model){
