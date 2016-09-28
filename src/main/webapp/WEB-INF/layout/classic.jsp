@@ -25,10 +25,12 @@
 <tilesx:useAttribute name="current"/>
 <div class="form">
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid">      
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-           <li class="${current == 'home' ? 'active' : ''}"><a href='<spring:url value="/" />'>Home</a></li>
+          <li class="${current == 'home' ? 'active' : ''}">
+            <a class="navbar-brand" href='<spring:url value="/"/>'>
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
           <security:authorize access="isAuthenticated() and hasRole('USER')">
             <li class="${current == 'test' ? 'active' : ''}"><a href='<spring:url value="/startTesting" />'>Тест</a></li>
             <li class="${current == 'history' ? 'active' : ''}"><a href='<spring:url value="/history" />'>История</a></li>

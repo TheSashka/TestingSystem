@@ -2,7 +2,6 @@ package com.alexander.testingsystem.controllers;
 
 import com.alexander.testingsystem.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
