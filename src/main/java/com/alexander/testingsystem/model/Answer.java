@@ -10,7 +10,6 @@ public final class Answer extends AbstractEntity
         return idQuestion;
     }
 
-
     public void setIdQuestion(long idQuestion) {
         this.idQuestion = idQuestion;
     }

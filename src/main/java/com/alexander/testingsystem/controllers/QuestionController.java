@@ -2,58 +2,28 @@ package com.alexander.testingsystem.controllers;
 
 import com.alexander.testingsystem.dao.AnswerDAOJDBCTemplate;
 import com.alexander.testingsystem.dao.QuestionDAOJDBCTemplate;
-import com.alexander.testingsystem.model.Answer;
-import com.alexander.testingsystem.model.MultipleChoice;
-import com.alexander.testingsystem.model.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
-public final class QuestionController {
+public class QuestionController {
+
+    private QuestionDAOJDBCTemplate questionDAOJDBCTemplate = new QuestionDAOJDBCTemplate();
 
     @RequestMapping("question")
     public String question(Model model){
-        MultipleChoice multipleChoice = new MultipleChoice();
-        List<Answer> answerList = new ArrayList<Answer>();
-        answerList.add(new Answer());
-        answerList.add(new Answer());
-        answerList.add(new Answer());
-        answerList.add(new Answer());
-        multipleChoice.setAnswers(answerList);
-        model.addAttribute("multipleChoice", multipleChoice);
+        model.addAttribute("questions", questionDAOJDBCTemplate.getAll());
         return "question";
     }
 
-    @RequestMapping(value = "addQuestion", method = RequestMethod.POST)
-    public String addQuestion(@Valid @ModelAttribute MultipleChoice multipleChoice,
-                              BindingResult bindingResult, Model model ) {
-        if (bindingResult.hasErrors()) {
-            return "question";
-        }
-        Question question = new Question();
-        question.setText(multipleChoice.getQuestion());
-        question.setDifficult(multipleChoice.getDifficult());
-        QuestionDAOJDBCTemplate questionDAOJDBCTemplate = new QuestionDAOJDBCTemplate();
-        questionDAOJDBCTemplate.insert(question);
-        question.setId(questionDAOJDBCTemplate.getByText(multipleChoice.getQuestion()).getId());
-
+    @RequestMapping("delete/{id}")
+    public String deleteQuestion(@PathVariable long id, Model model){
         AnswerDAOJDBCTemplate answerDAOJDBCTemplate = new AnswerDAOJDBCTemplate();
-        for (Answer answer: multipleChoice.getAnswers()) {
-            if(!answer.getText().isEmpty()) {
-                answer.setIdQuestion(question.getId());
-                answerDAOJDBCTemplate.insert(answer);
-            }
-        }
+        answerDAOJDBCTemplate.deleteByQuestionId(id);
+        questionDAOJDBCTemplate.deleteById(id);
         model.addAttribute("success", true);
-        return "redirect:question";
+        return "redirect:/question";
     }
-
 }

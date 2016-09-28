@@ -30,6 +30,11 @@ public final class AnswerDAOJDBCTemplate extends AbstractDAO<Answer> {
         return delete(query, id);
     }
 
+    public boolean deleteByQuestionId(long questionId){
+        String query= "delete from Answer where id_question = ?";
+        return delete(query, questionId);
+    }
+
     public Answer getById(long id) {
         String query = "select * from Answer where id = ?";
 

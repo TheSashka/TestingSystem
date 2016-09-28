@@ -24,7 +24,6 @@ public final class TestController
     private TestDAOJDBCTemplate testDAOJDBCTemplate = new TestDAOJDBCTemplate();
     private HistoryDAOJDBCTemplate historyDAOJDBCTemplate = new HistoryDAOJDBCTemplate();
 
-
     @RequestMapping("/startTesting")
     public String startTesting() {
         return "startTesting";
@@ -59,8 +58,8 @@ public final class TestController
         test.setId(testDAOJDBCTemplate.getByObject(new Object[]{user.getId(), "new"}).getId());
         for (Answer answer: answers.getAnswers()){
             if(answer.getId() != 0){
-                answer.setIdQuestion(answerDAOJDBCTemplate.getById(answer.getId()).getIdQuestion());
                 History history = new History();
+                answer.setIdQuestion(answerDAOJDBCTemplate.getById(answer.getId()).getIdQuestion());
                 history.setIdAnswer(answer.getId());
                 history.setIdQuestion(answer.getIdQuestion());
                 history.setIdTest(test.getId());

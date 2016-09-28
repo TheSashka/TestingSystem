@@ -31,6 +31,8 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
 
     public boolean update(User user) {
         String query = "update User set login=?, email=?, password=? where id=?";
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         Object[] values = new Object[]{user.getLogin(), user.getEmail(), user.getPassword(), user.getId()};
         return update(query, values);
     }
@@ -64,5 +66,10 @@ public final class UserDAOJDBCTemplateImpl extends AbstractDAO<User> {
     public User getByLogin(String name) {
         String query = "select * from User where login=?";
         return getByObject(query, new Object[]{name}, new UserMapper());
+    }
+
+    public User getByEmail(String email) {
+        String query = "select * from User where email=?";
+        return getByObject(query, new Object[]{email}, new UserMapper());
     }
 }

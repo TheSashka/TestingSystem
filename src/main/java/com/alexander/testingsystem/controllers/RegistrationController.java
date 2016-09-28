@@ -1,7 +1,10 @@
 package com.alexander.testingsystem.controllers;
 
 import com.alexander.testingsystem.dao.UserDAOJDBCTemplateImpl;
+import com.alexander.testingsystem.mailsender.CustomMailAPI;
 import com.alexander.testingsystem.model.User;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,8 @@ import javax.validation.Valid;
 public final class RegistrationController
 {
     private final UserDAOJDBCTemplateImpl daojdbcTemplate = new UserDAOJDBCTemplateImpl();
-
+    private final ConfigurableApplicationContext context = new FileSystemXmlApplicationContext("src/main/webapp/WEB-INF/applicationContext.xml");
+    private final CustomMailAPI customMailAPI = (CustomMailAPI) context.getBean("customEmail");
     @ModelAttribute("user")
     public User constructUser() {
         return new User();
@@ -33,6 +37,7 @@ public final class RegistrationController
         if (result.hasErrors()) {
             return "registration";
         }
+        customMailAPI.noticeOfRegistration(user.getEmail(), user.getLogin());
         daojdbcTemplate.insert(user);
         return "redirect:/";
     }
